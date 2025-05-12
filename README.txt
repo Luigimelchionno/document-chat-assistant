@@ -12,7 +12,7 @@ Un'applicazione web che permette agli utenti di caricare un documento (PDF), est
 
 1. Clona questo repository:
    ```bash
-   git clone https://github.com/luigi.melchionno/document-chat-assistant.git
+   git clone https://github.com/Luigimelchionno/document-chat-assistant.git
 
 
 2.Utilizzo del progetto:
