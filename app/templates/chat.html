@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat con il documento</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .chat-box { max-width: 600px; margin: auto; }
+        .message { margin: 10px 0; }
+        .user { font-weight: bold; color: blue; }
+        .assistant { font-weight: bold; color: green; }
+    </style>
+</head>
+<body>
+    <div class="chat-box">
+        <h1>Analisi del Documento</h1>
+        <p><strong>Riassunto e Temi:</strong></p>
+        <pre>{{ analysis }}</pre>
+
+        <hr>
+
+        <div id="chat-messages"></div>
+
+        <form id="chat-form">
+            <input type="text" id="user-message" placeholder="Fai una domanda..." required style="width: 80%;">
+            <button type="submit">Invia</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('chat-form');
+        const input = document.getElementById('user-message');
+        const chatBox = document.getElementById('chat-messages');
+        const docId = "{{ doc_id }}";
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const message = input.value;
+            chatBox.innerHTML += `<div class="message"><span class="user">Tu:</span> ${message}</div>`;
+            input.value = '';
+
+            const response = await fetch(`/chat/${docId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ message })
+            });
+
+            const data = await response.json();
+            chatBox.innerHTML += `<div class="message"><span class="assistant">Assistente:</span> ${data.reply}</div>`;
+        });
+    </script>
+</body>
+</html>

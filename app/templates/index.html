@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carica PDF</title>
+</head>
+<body>
+    <h1>Carica un documento PDF</h1>
+
+    <!-- Form per il caricamento del file -->
+    <form method="POST" action="/" enctype="multipart/form-data">
+        <label for="file">Scegli un file PDF:</label>
+        <input type="file" name="file" accept=".pdf" required>
+        <button type="submit">Carica</button>
+    </form>
+</body>
+</html>
